@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style>
+        .input_value, .return_value {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="text-center display-1 container">
+    <a href="/base_app">Do translit! =D</a>
+</div>
+<br>
+<form class="super_form" action="/base_app">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="h2">Normal text:</div>
+                <textarea id="input_text" class="input_value h3" rows="15" cols="30">{{ normal_text }}</textarea>
+            </div>
+            <div class="col">
+                <div class="h2">Translit:</div>
+                <textarea id="return_text" class="return_value h3" rows="15" cols="30">{{ translit_text }}</textarea>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2 offset-0">
+                <button type="submit" class="btn btn-dark" onclick="make_translit() " style="width: 100%">Translit it
+                    ->
+                </button>
+            </div>
+            <div class="col-2 offset-4">
+                <button type="submit" class="btn btn-dark" onclick="make_normal_text() " style="width: 100%"><- Normal
+                    it
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+<br>
+<div class="container" style="text-align: center;color:red">
+    {{ rules }}
+</div>
+<script>
+    function make_translit() {
+        var input_text = document.getElementById("input_text").value;
+        if (input_text) {
+            document.forms[0].action = "/base_app/translit" + input_text;
+        }
+    }
+
+    function make_normal_text() {
+        var input_text = document.getElementById("return_text").value;
+        if (input_text) {
+            document.forms[0].action = "/base_app/normal/" + input_text;
+        }
+    }
+</script>
+</body>
+</html>
