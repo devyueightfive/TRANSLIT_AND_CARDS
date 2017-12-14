@@ -33,11 +33,11 @@
         <br>
         <div class="row">
             <div class="col-2 offset-0">
-                <button type="submit" class="btn btn-dark" onclick="make_translit() " style="width: 100%">Translit it
+                <button type="submit" class="btn btn-dark" onclick="make_translit()" style="width: 100%">Translit it
                     ->
                 </button>
             </div>
-            <div class="col-2 offset-4">
+            <div class="col-2 offset-8">
                 <button type="submit" class="btn btn-dark" onclick="make_normal_text() " style="width: 100%"><- Normal
                     it
                 </button>
@@ -53,7 +53,7 @@
     function make_translit() {
         var input_text = document.getElementById("input_text").value;
         if (input_text) {
-            document.forms[0].action = "/base_app/translit" + input_text;
+            document.forms[0].action = "/base_app/translit/" + input_text;
         }
     }
 
@@ -63,6 +63,22 @@
             document.forms[0].action = "/base_app/normal/" + input_text;
         }
     }
+
+    function make_transformation(fromText) {
+        var input_text = document.getElementById(fromText).value;
+        if (input_text) {
+            switch (fromText) {
+                case "input_text":
+                    document.forms[0].action = "/base_app/translit/" + input_text;
+                    break
+                case "return_text":
+                    document.forms[0].action = "/base_app/normal/" + input_text;
+                    break
+                default:
+            }
+        }
+    }
 </script>
 </body>
+
 </html>
